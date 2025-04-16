@@ -23,7 +23,7 @@ const {
 
 const baseDirectory = './src/views/pages/'
 const assetDirectory = './src/assets/'
-const finalDirectory = './dist/'
+const finalDirectory = './docs/'
 
 const copyOptions = {
     overwrite: true,

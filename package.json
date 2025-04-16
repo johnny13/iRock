@@ -7,7 +7,7 @@
     "scripts": {
         "pug": "node index.js",
         "build": "npx npm-run-all -lsc pug scss",
-        "scss": "sass --verbose --quiet-deps --load-path=node_modules --style expanded --source-map --embed-sources --no-error-css src/scss:dist",
+        "scss": "sass --verbose --quiet-deps --load-path=node_modules --style expanded --source-map --embed-sources --no-error-css src/scss:docs",
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "nodemon -x \"npm run build\"",
         "postfix": "postcss --config postcss.config.cjs --replace docs/css/docs.css"
