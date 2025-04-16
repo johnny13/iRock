@@ -1,0 +1,385 @@
+extends ../layout
+
+append config
+    - var title = 'Derek Scott\'s Portfolio Website'
+    - var metaDesc = 'I bring napkin art to life.'
+    - var highlight = true
+    - var slug = 'index'
+
+block scriptsJS
+    +author()
+    script(src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/cash/8.1.5/cash.min.js")
+    script(src="https://cdn.jsdelivr.net/npm/@terwanerik/scrolltrigger@1.0.5/dist/ScrollTrigger.min.js")
+    script.
+        const trigger = new ScrollTrigger.default()
+        trigger.add('[data-trigger]')
+
+        // Simple function to add the correct active class to the 'dots' navbar
+        var lastDot = ''
+        function updateDots(forceTargetActive = '') {
+            $('.nav-dots').removeClass('active')
+
+            let result = ''
+            if($('.profile-section').hasClass('visible') || forceTargetActive === 'contact'){
+                result = 'contact'
+                $('.profile-dot').addClass('active');
+            } else if($('.homepage').hasClass('visible') || forceTargetActive === 'home'){
+                result = 'home'
+                $('.homepage-dot').addClass('active');
+            } else if($('.portfolio-section').hasClass('visible') || forceTargetActive === 'work'){
+                result = 'work'
+                $('.portfolio-dot').addClass('active');
+            } else if($('.hobby-section').hasClass('visible') || forceTargetActive === 'hobbies'){
+                result = 'hobbies'
+                $('.hobby-dot').addClass('active');
+            } else if($('.timeline-section').hasClass('visible') || forceTargetActive === 'timeline'){
+                result = 'timeline'
+                $('.timeline-dot').addClass('active');
+            }
+
+            if(result === ''){
+                $('.homepage-dot').addClass('active');
+            }
+
+            lastDot = result
+
+        }
+
+        function setLastDot(){
+            // console.log('lastDot', lastDot)
+            updateDots(lastDot)
+        }
+
+        // Throttle function to limit execution rate
+        function throttle(func, limit) {
+            let inThrottle;
+            return function (...args) {
+                if (!inThrottle) {
+                func.apply(this, args);
+                inThrottle = true;
+                setTimeout(() => (inThrottle = false), limit);
+                }
+            };
+        }
+
+        // Scroll handler
+        const handleScroll = throttle(() => {
+            updateDots();
+        }, 100); // 100ms = 10 times per second
+
+        function goToDot(idTarget) {
+            if(idTarget !== 'home'){
+                const element = document.getElementById(idTarget);
+                element.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+            } else {
+                document.body.scrollTop = 0; // For Safari
+                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+            }
+
+            updateDots(idTarget);
+            setTimeout(setLastDot, 100);
+        }
+
+        $(function () {
+            $('html').addClass ( 'dom-loaded' );
+            $(window).on('scroll', handleScroll);
+
+            $('a.nav-dots').each(function () {
+                var $this = $(this);
+                $this.on("click", function (ev) {
+                    ev.preventDefault();
+                    const nTarget = $(this).data('target');
+                    goToDot(nTarget);
+                    updateDots(nTarget);
+                    // console.log(nTarget);
+                });
+            });
+        });
+
+block content
+    #fullpage
+        .section.homepage(data-trigger="true")
+            .container.homepage-content
+                h1#home.display-1 Derek Scott
+                h2.subtitle Developer Extraordinaire
+
+        .section.portfolio-section(data-trigger="true")
+            .container.py-5
+                h2#work.display-3.text-center.background.h2.heavyTitle
+                    span Recent Work
+                .row(data-masonry={percentPosition: true })
+                    .col-sm-6.col-lg-4.mb-4
+                        .card
+                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
+                            title Placeholder
+                            rect(width="100%" height="100%" fill="#868e96")
+                    .col-sm-6.col-lg-4.mb-4
+                        .card
+                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
+                            title Placeholder
+                            rect(width="100%" height="100%" fill="#868e96")
+                            .card-body
+                                p.card-text.
+                                    Single-origin coffee pop-up, aesthetic scenester plaid knausgaard.
+
+                    .col-sm-6.col-lg-4.mb-4
+                        .card
+                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
+                            title Placeholder
+                            rect(width="100%" height="100%" fill="#868e96")
+                    .col-sm-6.col-lg-4.mb-4
+                        .card
+                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
+                            title Placeholder
+                            rect(width="100%" height="100%" fill="#868e96")
+                            .card-body
+                                p.card-text Vegan bushwick keffiyeh, microdosing tattooed.
+                    .col-sm-6.col-lg-4.mb-4
+                        .card
+                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
+                            title Placeholder
+                            rect(width="100%" height="100%" fill="#868e96")
+                    .col-sm-6.col-lg-4.mb-4
+                        .card
+                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
+                            title Placeholder
+                            rect(width="100%" height="100%" fill="#868e96")
+                            .card-body
+                                p.card-text Farm-to-table portland, umami kombucha.
+                    .col-sm-6.col-lg-4.mb-4
+                        .card
+                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
+                            title Placeholder
+                            rect(width="100%" height="100%" fill="#868e96")
+                    .col-sm-6.col-lg-4.mb-4
+                        .card
+                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
+                            title Placeholder
+                            rect(width="100%" height="100%" fill="#868e96")
+                    .col-sm-6.col-lg-4.mb-4
+                        .card
+                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
+                            title Placeholder
+                            rect(width="100%" height="100%" fill="#868e96")
+                            .card-body
+                                p.card-text Artisan selvage, pour-over chia.
+                    .col-sm-6.col-lg-4.mb-4
+                        .card
+                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
+                            title Placeholder
+                            rect(width="100%" height="100%" fill="#868e96")
+
+        .section.timeline-section(data-trigger="true")
+            .container.py-5
+                .row
+                    .col-12.mt-5.pt-5#timeline
+                        h2.display-3.timeline-main-title.heavyTitle Professional Timeline
+            .container-fluid.mt-5
+                .scrolling-wrapper.row.flex-row.flex-nowrap.mt-4.pb-4.pt-2
+                    .col-12.pt-5.my-5.timeline-col
+                        ul.timeline.timeline-horizontal.mb-5
+                            li.timeline-item
+                                .timeline-badge.secondary
+                                    i.bx.bx-check(style="color: #FFFFFF;")
+                                .timeline-panel
+                                    .timeline-heading
+                                        h4.timeline-title A Journey Begins
+                                        p
+                                            small.text-muted
+                                                i.bx.bxs-time(style="color: #3b5998;")
+                                                |  2015 College Graduation
+                                    .timeline-body
+                                        p Focussing on behavioral designs, and financial mathematics I graduated college with two Bachelor degrees
+                            li.timeline-item
+                                .timeline-badge.primary
+                                    i.bx.bx-check(style="color: #FFFFFF;")
+                                .timeline-panel
+                                    .timeline-heading
+                                        h4.timeline-title Oilfield Mapping
+                                        p
+                                            small.text-muted
+                                                i.bx.bxs-time(style="color: #3b5998;")
+                                                |  2015 - 2017
+                                    .timeline-body
+                                        p Created a mapping app, focused on drilling rig locations and creating large printed maps with customer data
+                            li.timeline-item
+                                .timeline-badge.success
+                                    i.bx.bx-check(style="color: #FFFFFF;")
+                                .timeline-panel
+                                    .timeline-heading
+                                        h4.timeline-title FreshLime
+                                        p
+                                            small.text-muted
+                                                i.bx.bxs-time(style="color: #3b5998;")
+                                                |  2012 - 2014
+                                    .timeline-body
+                                        p Created a mapping app, focused on drilling rig locations and creating large printed maps with customer data
+                            li.timeline-item
+                                .timeline-badge.warning
+                                    i.bx.bx-check(style="color: #FFFFFF;")
+                                .timeline-panel
+                                    .timeline-heading
+                                        h4.timeline-title RealTruck
+                                        p
+                                            small.text-muted
+                                                i.bx.bxs-time(style="color: #3b5998;")
+                                                |  2012 - 2014
+                                    .timeline-body
+                                        p Created a mapping app, focused on drilling rig locations and creating large printed maps with customer data
+                            li.timeline-item
+                                .timeline-badge.danger
+                                    i.bx.bx-check(style="color: #FFFFFF;")
+                                .timeline-panel
+                                    .timeline-heading
+                                        h4.timeline-title Myriad Mobile
+                                        p
+                                            small.text-muted
+                                                i.bx.bxs-time(style="color: #3b5998;")
+                                                |  2016 - 2020
+                                    .timeline-body
+                                        p Built out Bushel.ag. Worked on various other client applications using PHP and React.js
+                            li.timeline-item
+                                .timeline-badge.info
+                                    i.bx.bx-check(style="color: #FFFFFF;")
+                                .timeline-panel
+                                    .timeline-heading
+                                        h4.timeline-title Botlink
+                                        p
+                                            small.text-muted
+                                                i.bx.bxs-time(style="color: #3b5998;")
+                                                |  2021 - 2025
+                                    .timeline-body
+                                        p Created a mapping app, focused on drilling rig locations and creating large printed maps with customer data
+
+        .section.hobby-section(data-trigger="true")
+            .container.py-5#hobbies
+                .jumbotron.p-4.my-4.bg-dark.rounded-3
+                    h2.display-3.heavyTitle Hobby Projects
+                    p.lead.pt-2 I am not always coding business and professional applications in secure environments. Sometimes I like to just have fun and work on cool open source projects. I am especially fond of Arduino &amp; Raspberry Pi's, as well as HomeLab projects.
+                        strong &nbsp;If its mini or micro and boots, I'm into it.
+
+                .row(data-masonry={percentPosition: true })
+                    .col-sm-6.col-lg-4.mb-4
+                        .card
+                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
+                            title Placeholder
+                            rect(width="100%" height="100%" fill="#868e96")
+                    .col-sm-6.col-lg-4.mb-4
+                        .card
+                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
+                            title Placeholder
+                            rect(width="100%" height="100%" fill="#868e96")
+                            .card-body
+                                p.card-text.
+                                    Single-origin coffee pop-up, aesthetic scenester plaid knausgaard.
+
+                    .col-sm-6.col-lg-4.mb-4
+                        .card
+                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
+                            title Placeholder
+                            rect(width="100%" height="100%" fill="#868e96")
+                    .col-sm-6.col-lg-4.mb-4
+                        .card
+                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
+                            title Placeholder
+                            rect(width="100%" height="100%" fill="#868e96")
+                            .card-body
+                                p.card-text Vegan bushwick keffiyeh, microdosing tattooed.
+                    .col-sm-6.col-lg-4.mb-4
+                        .card
+                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
+                            title Placeholder
+                            rect(width="100%" height="100%" fill="#868e96")
+                    .col-sm-6.col-lg-4.mb-4
+                        .card
+                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
+                            title Placeholder
+                            rect(width="100%" height="100%" fill="#868e96")
+                            .card-body
+                                p.card-text Farm-to-table portland, umami kombucha.
+                    .col-sm-6.col-lg-4.mb-4
+                        .card
+                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
+                            title Placeholder
+                            rect(width="100%" height="100%" fill="#868e96")
+                    .col-sm-6.col-lg-4.mb-4
+                        .card
+                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
+                            title Placeholder
+                            rect(width="100%" height="100%" fill="#868e96")
+                    .col-sm-6.col-lg-4.mb-4
+                        .card
+                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
+                            title Placeholder
+                            rect(width="100%" height="100%" fill="#868e96")
+                            .card-body
+                                p.card-text Artisan selvage, pour-over chia.
+                    .col-sm-6.col-lg-4.mb-4
+                        .card
+                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
+                            title Placeholder
+                            rect(width="100%" height="100%" fill="#868e96")
+
+        .section.profile-section(data-trigger="true")
+            .container.pt-5.mt-5
+                .row.mt-5.author-profile
+                    .col-md-5.col-lg-4.text-center.text-md-start
+                        .headshot-container
+                        .card.mb-4.mb-lg-0.ms-3.ps-1
+                            .card-body.p-0.ps-1
+                                ul.list-group.list-group-flush.rounded-3.social-links.jura.normal
+                                    li.list-group-item.d-flex.justify-content-between.align-items-center.p-3
+                                        i.bx.bxl-facebook-square(style="color: #3b5998;")
+                                        p.mb-0
+                                            a(href="https://facebook.com/janedoe" target="_blank") facebook.com/derek
+                                    li.list-group-item.d-flex.justify-content-between.align-items-center.p-3
+                                        i.bx.bxl-twitter(style="color: #55acee;")
+                                        p.mb-0
+                                            a(href="https://x.com/janedoe" target="_blank") x.com/derek
+                                    li.list-group-item.d-flex.justify-content-between.align-items-center.p-3
+                                        i.bx.bxl-reddit(style="color: #ff4500;")
+                                        p.mb-0
+                                            a(href="https://reddit.com/user/janedoe" target="_blank") reddit.com/user/derek
+
+                    .col-md-7.col-lg-8.author-details
+                        .pt-0.jost.normal
+                            h2#contact.display-3.heavyTitle About Me
+                            p
+                                | I’m Derek Scott, a dedicated Full Stack Web Developer with over 8 years of experience crafting robust web and mobile solutions. My expertise lies in TypeScript, PHP, and UI/UX automation, honed through impactful projects at Packet Digital / Botlink for the U.S. Navy, where I developed secure applications like quad-copter drone flight controllers and ship-based battery management systems in strict government cloud environments. My work at Myriad Mobile and Realtruck.com further sharpened my ability to deliver user-focused applications using React.js, Vue.js, and PHP 8, ensuring seamless front-end and back-end integration.
+
+                            p
+                                | With a background in psychology and economics from the University of North Dakota, I bring a deep understanding of user behavior and financial mathematics to my development process, creating intuitive and efficient digital experiences. Known for my upbeat personality and collaborative spirit, I thrive in team settings and am passionate about taking ideas from napkin mock-ups to deployable MVPs. My GitHub Profile:
+                                a(href="#") site.github.io/1234
+                                |  and reach me at
+                                a(href="#") email@me.com
+                                |  to collaborate on your next project.
+                        .mt-3.ps-3
+                            .call-to-action-wrapper.container
+                                .row.cta-buttons
+                                    .col-md-8.offset-md-2
+                                        .cta-wrapper
+                                            a.btn.btn-primary.cta-btn(href="#")
+                                                i.me-2.bx.bxs-envelope(style="color: #ffffff")
+                                                | Message Me
+
+                                            a.btn.btn-success.ms-3.cta-btn(href="mailto:jane.doe@example.com")
+                                                i.me-2.bx.bxs-download(style="color: #ffffff")
+                                                | Resume Download
+
+    .svgWave
+        .svgBottom
+            svg(xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320")
+                path(fill="#273036" fill-opacity="1" d="M0,64L14.1,96C28.2,128,56,192,85,202.7C112.9,213,141,171,169,165.3C197.6,160,226,192,254,176C282.4,160,311,96,339,101.3C367.1,107,395,181,424,202.7C451.8,224,480,192,508,181.3C536.5,171,565,181,593,186.7C621.2,192,649,192,678,181.3C705.9,171,734,149,762,154.7C790.6,160,819,192,847,186.7C875.3,181,904,139,932,154.7C960,171,988,245,1016,250.7C1044.7,256,1073,192,1101,149.3C1129.4,107,1158,85,1186,96C1214.1,107,1242,149,1271,138.7C1298.8,128,1327,64,1355,69.3C1383.5,75,1412,149,1426,186.7L1440,224L1440,320L1425.9,320C1411.8,320,1384,320,1355,320C1327.1,320,1299,320,1271,320C1242.4,320,1214,320,1186,320C1157.6,320,1129,320,1101,320C1072.9,320,1045,320,1016,320C988.2,320,960,320,932,320C903.5,320,875,320,847,320C818.8,320,791,320,762,320C734.1,320,706,320,678,320C649.4,320,621,320,593,320C564.7,320,536,320,508,320C480,320,452,320,424,320C395.3,320,367,320,339,320C310.6,320,282,320,254,320C225.9,320,198,320,169,320C141.2,320,113,320,85,320C56.5,320,28,320,14,320L0,320Z")
+
+    ul.dots.dots-right
+        li
+            a.nav-dots.homepage-dot.active(href="#0" data-target="home")
+        li
+            a.nav-dots.portfolio-dot(href="#1" data-target="work")
+        li
+            a.nav-dots.timeline-dot(href="#3" data-target="timeline")
+        li
+            a.nav-dots.hobby-dot(href="#2" data-target="hobbies")
+        li
+            a.nav-dots.profile-dot(href="#4" data-target="contact")

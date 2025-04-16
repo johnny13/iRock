@@ -1,0 +1,54 @@
+mixin navbar(menu_items)
+  header
+    .navbar.pt-1.pb-1.make-background-darkest
+      .navbar-section
+        a(href='#')
+          img.oversized-logo(src=imgPath+"i/logo.svg" alt="JollyRobot")
+      .navbar-section.pr-1
+        each menu_item in menu_items
+          a.text-bold.pull-right.btn.btn-dark.btn-action.btn-sm.mr-3(href= menu_item.url) #{menu_item.name}
+            i.icon.icon-apps
+        .clearfix
+
+mixin menu(menu_items)
+  ul.menu-inner
+    each top_item in menu_items
+      li.menu-item(class= navLinkActive)
+        a(href= top_item.link, class= navLinkActive == top_item.title ? 'm-menu-link is-active' : 'm-menu-link')= top_item.title
+
+//- mixin icon(iconHref, iconClass )
+//-   svg(class= iconClass)
+//-     use(xlink:href="#spriteIcon-"+iconHref)
+mixin icon(iClass)
+  span(class="rif-"+iClass)
+
+mixin img(fileName)
+  - const url = `upload/${fileName}`
+  - const url2x = url.replace(/(\.\w+$)/, '@2x$1')
+
+  img(src=url srcset=`${url2x} 2x`)&attributes(attributes)
+
+mixin script(url)
+  script(src=url)&attributes(attributes)
+
+mixin style(url)
+  link(rel='stylesheet' href=url)&attributes(attributes)
+
+mixin image(url)
+  img(src=url)&attributes(attributes)
+
+mixin iFont(pre, family, icon)
+  i(class= pre + " " + family + "-" + icon)
+
+mixin mojoButton(size,color,text)
+  button(class="btn "+size+" "+color)
+    | #{text}
+
+//- USAGE
+//- +loop(10)
+//-   p This will appear 10 times
+mixin loop(count)
+  - var n = 0
+  while n < count
+    block
+    - n++

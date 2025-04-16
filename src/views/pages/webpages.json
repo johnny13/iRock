@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Index",
+        "url": "/index"
+    },
+    {
+        "name": "Resume",
+        "url": "/resume"
+    },
+    {
+        "name": "Contact",
+        "url": "/contact"
+    }
+]

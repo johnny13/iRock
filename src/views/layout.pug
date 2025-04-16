@@ -1,0 +1,27 @@
+include ../config
+block config
+include ../mixins/global
+include ../mixins/schema
+
+append config
+    - var cssFile = "mojo"
+
+doctype html
+html(lang= lang).h-100
+    head
+        include headmeta
+
+    body(class='no-javascript').d-flex.flex-column.h-100
+        script document.body.classList.remove('no-javascript');
+        // include navbar
+
+        block content
+
+        include footer
+
+        if highlight
+            script(src=path+"prismjs/prism.js")
+
+        script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js' integrity='sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq' crossorigin='anonymous')
+
+        block scriptsJS

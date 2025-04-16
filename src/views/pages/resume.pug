@@ -1,0 +1,22 @@
+extends ../layout
+
+append config
+    - var highlight = true
+    - var slug = 'index'
+
+block content
+    section.bg-black.angle-bottom-left.positive-top.headBlock
+        .container
+            .row
+                .col
+                    .hero.hero-large.bg-black
+                        .hero-body.text-center
+                            h1.display-1.title.text-warning.mt-n3
+                                | Checkout My Resume
+                            .subtitle.subtitle-sm.text-info.mt-3.mb-2
+                                | I make a great addition to any team!
+                            .btn.btn-lg.btn-secondary.mt-5
+                                | Download!
+
+        span.triangleTop &nbsp;
+        //- img.triangleMojo(src=imgPath+"imgs/Triangle.svg" alt="Triangle")

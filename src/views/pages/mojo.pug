@@ -1,0 +1,18 @@
+extends ../layout
+
+append config
+  - var title = 'Mojo Typography Laboratory'
+  - var metaDesc = 'Testing out the SCSS Library with an easy to use testbed'
+  - var highlight = true
+  - var slug = 'mojo'
+
+block content
+  section.bg-white
+    .vr-block.site-spacer
+    .container
+      .row
+        .offset-md-3.col-md-6.offset-sm-1.col-sm-10
+          :prismify(lang="shell")
+            > node mojo.js --grunt --install
+
+            > grunt mojoDocs

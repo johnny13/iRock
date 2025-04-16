@@ -1,0 +1,74 @@
+mixin navbar()
+  header
+    .navbar.pt-1.pb-1.make-background-darkest
+      .navbar-section
+        a(href='#')
+          img.oversized-logo(src=imgPath+"imgs/mojo_logo_color.svg" alt="JollyRobot")
+      .navbar-section.pr-1
+        a.text-bold.pull-right.btn.btn-dark.btn-action.btn-sm.mr-3(href="./download.html")
+          i.icon.icon-apps
+        a.text-bold.pull-right.btn.btn-primary.btn-action.btn-sm.mr-3(href="https://github.com/huement/mojo")
+          i.icon.icon-arrow-down
+        a.text-bold.pull-right.btn.btn-secondary.btn-sm.mr-1(href="./docs/") Docs
+        .clearfix
+
+mixin testmenu(menu_items)
+  ul.menu-inner
+    each top_item in menu_items
+      li.test-item
+        a(href= top_item.url)= top_item.name
+
+
+mixin menu(menu_items)
+  ul.menu-inner
+    each top_item in menu_items
+      li.menu-item(class= navLinkActive)
+        a(href= top_item.link, class= navLinkActive == top_item.title ? 'm-menu-link is-active' : 'm-menu-link')= top_item.title
+
+
+mixin sectionCenterBlock(name,angle)
+  section(class="make-background-"+name+" "+angle)
+    .row
+      .offset-md-3.col-md-6.offset-sm-1.col-sm-10
+        block
+
+
+mixin sectionTitle(color)
+  h2(class="make-text-"+color+" text-center")
+    block
+
+
+mixin codeRow()
+  .row
+    .offset-md-3.col-md-6.offset-sm-1.col-sm-10
+      block
+
+
+mixin linebreak()
+    .vr-block.site-spacer
+
+//- USAGE
+//- +loop(10)
+//-   p This will appear 10 times
+
+mixin loop(count)
+  - var n = 0
+  while n < count
+    block
+    - n++
+
+//- Icon Generation: https://css-tricks.com/svg-sprites-use-better-icon-fonts/
+mixin headerNav(PrimaryNavItems)
+  - var PrimaryNavItems = PrimaryNavItems || [{'url':'home','title':'Home','img':'nav','key':'home'},{'url':'inputs','title':'Inputs','img':'nav','key':'inputs'},{'url':'buttons','title':'Buttons','img':'nav','key':'buttons'},{'url':'cards','title':'Cards','img':'nav','key':'cards'},{'url':'icons','title':'Icons','img':'nav','key':'icons'},{'url':'collapse','title':'Collapse','img':'nav','key':'collapse'}]
+
+  each page,i in PrimaryNavItems
+      if currentPage === page.url
+          a(class="active", href= page.url + '.html')
+              svg(class='nav-icon', aria-hidden="true")
+                  use(xlink:href= 'img/sprites/nav.svg#' + page.key, xmlns:xlink="http://www.w3.org/1999/xlink")
+              span.title= page.title
+      else
+          a(href= page.url + '.html')
+              svg(class='nav-icon', aria-hidden="true")
+                  use(xlink:href= 'img/sprites/nav.svg#' + page.key, xmlns:xlink="http://www.w3.org/1999/xlink")
+              span.title= page.title
