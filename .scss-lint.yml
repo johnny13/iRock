@@ -1,0 +1,27 @@
+---
+exclude:
+  - "scss/vendor/*"
+  - ".cache/*"
+  - "dist/*"
+  - "node_modules/*"
+  - "vendor/*"
+
+linters:
+  Comment:
+    enabled: false
+  PropertySortOrder:
+    enabled: true
+  SingleLinePerSelector:
+    enabled: false
+  StringQuotes:
+    enabled: true
+  ImportantRule:
+    enabled: false
+  SelectorFormat:
+    enabled: false
+  ColorVariable:
+    enabled: true
+  QualifyingElement:
+    enabled: false
+  DeclarationOrder:
+    enabled: true

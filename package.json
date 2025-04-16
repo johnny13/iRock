@@ -1,0 +1,80 @@
+{
+    "name": "irock",
+    "version": "1.0.0",
+    "description": "Portfolio Website",
+    "main": "index.js",
+    "license": "MPL-2.0",
+    "scripts": {
+        "pug": "node index.js",
+        "build": "npx npm-run-all -lsc pug scss",
+        "scss": "sass --verbose --quiet-deps --load-path=node_modules --style expanded --source-map --embed-sources --no-error-css src/scss:dist",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "nodemon -x \"npm run build\"",
+        "postfix": "postcss --config postcss.config.cjs --replace docs/css/docs.css"
+    },
+    "keywords": [
+        "profile",
+        "portfolio",
+        "author",
+        "resume",
+        "static-site"
+    ],
+    "author": "Derek Scott <derek@huement.com>",
+    "nodemonConfig": {
+        "verbose": true,
+        "watch": [
+            "src"
+        ],
+        "ext": "scss,pug",
+        "ignore": [
+            ".cache/**"
+        ],
+        "delay": 1500
+    },
+    "dependencies": {
+        "@effective/prettier": "^0.2.1",
+        "@ntdalbec/type-scale": "^1.0.1",
+        "@popperjs/core": "^2.11.8",
+        "ansi-colors": "^4.1.3",
+        "asciiart-logo": "^0.2.7",
+        "body-parser": "^2.2.0",
+        "cash-dom": "^8.1.5",
+        "chalk": "^5.4.1",
+        "color-scale": "^1.1.0",
+        "colormap": "^2.3.2",
+        "csslint": "^1.0.5",
+        "dotenv": "^16.5.0",
+        "fs-extra": "^11.3.0",
+        "fs-jetpack": "^5.1.0",
+        "global": "^4.4.0",
+        "jstransformer": "^1.0.0",
+        "jstransformer-highlight": "^2.0.0",
+        "jstransformer-markdown-it": "^3.0.0",
+        "jstransformer-prismjs": "^0.1.0",
+        "jstransformer-scss": "^2.0.0",
+        "lodash": "^4.17.21",
+        "markdown-it": "^14.1.0",
+        "method-override": "^3.0.0",
+        "modular-scale": "^5.1.2",
+        "prettier-eslint": "^16.3.0",
+        "prettier-stylelint": "^0.4.2",
+        "prismjs": "^1.30.0",
+        "pug": "^3.0.3",
+        "recursive-copy": "^2.0.14",
+        "rimraf": "^6.0.1",
+        "sass": "^1.86.3",
+        "stylelint": "^16.18.0",
+        "stylelint-color-format": "^1.1.0",
+        "stylelint-config-idiomatic-order": "^10.0.0",
+        "stylelint-scss": "^6.11.1",
+        "stylus": "^0.64.0",
+        "terminal-img": "^2.0.24",
+        "tsc": "^2.0.4",
+        "vite": "^6.2.6"
+    },
+    "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
+    "devDependencies": {
+        "nodemon": "^3.1.9",
+        "npm-run-all": "^4.1.5"
+    }
+}

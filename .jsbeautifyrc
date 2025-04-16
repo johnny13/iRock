@@ -1,0 +1,14 @@
+{
+  "indent": 4,
+  "indent_char": " ",
+  "condense": true,
+  "padcomments": true,
+  "indent_inner_html": true,
+  "wrap_line_length": 80,
+  "preserve_newlines": true,
+  "unformatted": [
+    "a",
+    "pre",
+    "code"
+  ]
+}
