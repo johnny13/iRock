@@ -111,12 +111,7 @@ h2.background span {
 /* Homepage Section */
 .homepage {
     background: #520099;
-    background: linear-gradient(
-        162deg,
-        rgba(82, 0, 153, 1) 0%,
-        rgba(15, 178, 170, 1) 50%,
-        rgba(251, 255, 18, 1) 100%
-    );
+    background: linear-gradient(162deg, rgba(82, 0, 153, 1) 0%, rgba(15, 178, 170, 1) 50%, rgba(251, 255, 18, 1) 100%);
 
     &::after {
         content: '';
@@ -146,6 +141,7 @@ h2.background span {
             margin-left: -4rem;
             font-weight: 700;
             letter-spacing: -0.5px;
+            display: inline !important;
         }
         .subtitle {
             font-size: 2.3rem;
@@ -153,6 +149,7 @@ h2.background span {
             letter-spacing: 1px;
             font-family: 'Jost';
             margin-left: -4rem;
+            display: inline-block !important;
         }
     }
 }
@@ -457,8 +454,7 @@ h2.background span {
             height: 400px;
             margin: 0 0 3rem 1rem;
             display: block;
-            background: url('https://i.imgur.com/jYmFd5a.jpeg') no-repeat top
-                center;
+            background: url('https://i.imgur.com/jYmFd5a.jpeg') no-repeat top center;
             background-size: cover;
             border-radius: 10px;
             border: 2px solid #1f1f1f;
@@ -467,8 +463,7 @@ h2.background span {
 
         .headshot-container::after {
             content: '';
-            background: url('https://i.imgur.com/jYmFd5a.jpeg') no-repeat top
-                center;
+            background: url('https://i.imgur.com/jYmFd5a.jpeg') no-repeat top center;
             background-size: cover;
             background-position-y: -398px;
             opacity: 0;

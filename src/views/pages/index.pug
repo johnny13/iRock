@@ -81,6 +81,15 @@ block scriptsJS
             setTimeout(setLastDot, 100);
         }
 
+        function centerHomeTitle() {
+            const halfWidth = Math.round($('body').innerWidth() * 0.5)
+            const titleWidth = 540
+            const marginAmount = Math.round((((halfWidth - titleWidth) * 0.25) + 20))
+            $(".homepage-content .display-1").css('marginLeft', marginAmount + 'px')
+            $(".homepage-content .subtitle").css('marginLeft', marginAmount + 'px')
+            console.log($('body').innerWidth(), titleWidth, marginAmount)
+        }
+
         $(function () {
             $('html').addClass ( 'dom-loaded' );
             $(window).on('scroll', handleScroll);
@@ -95,12 +104,14 @@ block scriptsJS
                     // console.log(nTarget);
                 });
             });
+
+            centerHomeTitle();
         });
 
 block content
     #fullpage
         .section.homepage(data-trigger="true")
-            .container.homepage-content
+            .container-fluid.homepage-content
                 h1#home.display-1 Derek Scott
                 h2.subtitle Developer Extraordinaire
 
@@ -109,66 +120,47 @@ block content
                 h2#work.display-3.text-center.background.h2.heavyTitle
                     span Recent Work
                 .row(data-masonry={percentPosition: true })
-                    .col-sm-6.col-lg-4.mb-4
-                        .card
-                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
-                            title Placeholder
-                            rect(width="100%" height="100%" fill="#868e96")
-                    .col-sm-6.col-lg-4.mb-4
-                        .card
-                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
-                            title Placeholder
-                            rect(width="100%" height="100%" fill="#868e96")
-                            .card-body
-                                p.card-text.
-                                    Single-origin coffee pop-up, aesthetic scenester plaid knausgaard.
 
                     .col-sm-6.col-lg-4.mb-4
                         .card
-                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
-                            title Placeholder
-                            rect(width="100%" height="100%" fill="#868e96")
-                    .col-sm-6.col-lg-4.mb-4
-                        .card
-                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
-                            title Placeholder
-                            rect(width="100%" height="100%" fill="#868e96")
+                            img.rounded.card-img-top(src="thumbnails/thumb_flightplan.png" alt="flightplan")
                             .card-body
-                                p.card-text Vegan bushwick keffiyeh, microdosing tattooed.
+                                p.card-text.
+                                    Building &amp; flying drone flightplans via hybrid Android application
                     .col-sm-6.col-lg-4.mb-4
                         .card
-                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
-                            title Placeholder
-                            rect(width="100%" height="100%" fill="#868e96")
-                    .col-sm-6.col-lg-4.mb-4
-                        .card
-                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
-                            title Placeholder
-                            rect(width="100%" height="100%" fill="#868e96")
+                            img.rounded.card-img-top(src="thumbnails/thumb_laanc.png" alt="map layers")
                             .card-body
-                                p.card-text Farm-to-table portland, umami kombucha.
+                                p.card-text Generating complex maps and layers from PostGIS GeoJSON
                     .col-sm-6.col-lg-4.mb-4
                         .card
-                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
-                            title Placeholder
-                            rect(width="100%" height="100%" fill="#868e96")
+                            a(href="#")
+                                img.rounded.card-img-top(src="thumbnails/thumb_map.png" alt="map data")
                     .col-sm-6.col-lg-4.mb-4
                         .card
-                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
-                            title Placeholder
-                            rect(width="100%" height="100%" fill="#868e96")
+                            img.rounded.card-img-top(src="thumbnails/thumb_map_texture.png" alt="flightplan")
                     .col-sm-6.col-lg-4.mb-4
                         .card
-                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
-                            title Placeholder
-                            rect(width="100%" height="100%" fill="#868e96")
+                            img.rounded.card-img-top(src="thumbnails/thumb_sites.png" alt="flightplan")
+                    .col-sm-6.col-lg-4.mb-4
+                        .card
+                            img.rounded.card-img-top(src="thumbnails/thumb_image.png" alt="flightplan")
+                    .col-sm-6.col-lg-4.mb-4
+                        .card
+                            img.rounded.card-img-top(src="thumbnails/thumb_printed.png" alt="flightplan")
+                    .col-sm-6.col-lg-4.mb-4
+                        .card
+                            img.rounded.card-img-top(src="thumbnails/thumb_freshlime1.png" alt="flightplan")
                             .card-body
-                                p.card-text Artisan selvage, pour-over chia.
+                                p.card-text I have been building hybrid mobile applications for years. Using ReactJS since its earliest days.
                     .col-sm-6.col-lg-4.mb-4
                         .card
-                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
-                            title Placeholder
-                            rect(width="100%" height="100%" fill="#868e96")
+                            img.rounded.card-img-top(src="thumbnails/thumb_results.png" alt="flightplan")
+                            .card-body
+                                p.card-text Loading statistics and AI copiled results as mapped data layers
+                    .col-sm-6.col-lg-4.mb-4
+                        .card
+                            img.rounded.card-img-top(src="thumbnails/thumb_freshlime3.png" alt="flightplan")
 
         .section.timeline-section(data-trigger="true")
             .container.py-5
@@ -262,64 +254,50 @@ block content
                 .row(data-masonry={percentPosition: true })
                     .col-sm-6.col-lg-4.mb-4
                         .card
-                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
-                            title Placeholder
-                            rect(width="100%" height="100%" fill="#868e96")
+                            img.rounded(src="thumbnails/thumb_pigasus-logo.png" alt="pigasus")
                     .col-sm-6.col-lg-4.mb-4
                         .card
-                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
-                            title Placeholder
-                            rect(width="100%" height="100%" fill="#868e96")
+                            img.card-img-top(src="thumbnails/thumb_cyber-deck.png" alt="cyber-deck")
                             .card-body
                                 p.card-text.
-                                    Single-origin coffee pop-up, aesthetic scenester plaid knausgaard.
+                                    CAD preview of a RPi based Cyber deck I am working on.
 
                     .col-sm-6.col-lg-4.mb-4
                         .card
-                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
-                            title Placeholder
-                            rect(width="100%" height="100%" fill="#868e96")
+                            a(href="#")
+                                img.card-img-top.rounded(src="thumbnails/thumb_torchwood.png" alt="project torchwood")
                     .col-sm-6.col-lg-4.mb-4
                         .card
-                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
-                            title Placeholder
-                            rect(width="100%" height="100%" fill="#868e96")
+                            a(href="#")
+                                img.card-img-top.rounded(src="thumbnails/thumb_leah.png" alt="relationship status")
                             .card-body
-                                p.card-text Vegan bushwick keffiyeh, microdosing tattooed.
+                                p.card-text Me and my long term girlfriend
                     .col-sm-6.col-lg-4.mb-4
                         .card
-                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
-                            title Placeholder
-                            rect(width="100%" height="100%" fill="#868e96")
+                            a(href="#")
+                                img.card-img-top.rounded(src="thumbnails/thumb_figma-blog.png" alt="figma blog project")
                     .col-sm-6.col-lg-4.mb-4
                         .card
-                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
-                            title Placeholder
-                            rect(width="100%" height="100%" fill="#868e96")
+                            a(href="#")
+                                img.card-img-top.rounded(src="thumbnails/thumb_style-tile.png" alt="Styleguide preview")
                             .card-body
-                                p.card-text Farm-to-table portland, umami kombucha.
+                                p.card-text Styleguides are a must have for any big project
                     .col-sm-6.col-lg-4.mb-4
                         .card
-                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
-                            title Placeholder
-                            rect(width="100%" height="100%" fill="#868e96")
+                            a(href="#")
+                                img.card-img-top.rounded(src="thumbnails/thumb_statue-13.png" alt="Roman Wallpaper")
                     .col-sm-6.col-lg-4.mb-4
                         .card
-                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
-                            title Placeholder
-                            rect(width="100%" height="100%" fill="#868e96")
+                            a(href="#")
+                                img.card-img-top.rounded(src="thumbnails/thumb_hackintosh.png" alt="Hackintosh FTW")
                     .col-sm-6.col-lg-4.mb-4
                         .card
-                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
-                            title Placeholder
-                            rect(width="100%" height="100%" fill="#868e96")
-                            .card-body
-                                p.card-text Artisan selvage, pour-over chia.
+                            a(href="#")
+                                img.card-img-top.rounded(src="thumbnails/thumb_watch-what-you-say.png" alt="Hackintosh FTW")
                     .col-sm-6.col-lg-4.mb-4
                         .card
-                            svg.bd-placeholder-img.card-img-top(width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false")
-                            title Placeholder
-                            rect(width="100%" height="100%" fill="#868e96")
+                            a(href="#")
+                                img.card-img-top.rounded(src="thumbnails/thumb_paco.png" alt="I love my baby bear")
 
         .section.profile-section(data-trigger="true")
             .container.pt-5.mt-5

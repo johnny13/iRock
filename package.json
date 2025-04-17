@@ -10,7 +10,9 @@
         "scss": "sass --verbose --quiet-deps --load-path=node_modules --style expanded --source-map --embed-sources --no-error-css src/scss:docs",
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "nodemon -x \"npm run build\"",
-        "postfix": "postcss --config postcss.config.cjs --replace docs/css/docs.css"
+        "postfix": "postcss --config postcss.config.cjs --replace docs/css/docs.css",
+        "imagemin": "./node_modules/.bin/imagemin _pics/**/* --plugin=pngquant --out-dir=docs/imgs",
+        "thumbnails": "node ./thumbnails.js"
     },
     "keywords": [
         "profile",
@@ -47,6 +49,8 @@
         "fs-extra": "^11.3.0",
         "fs-jetpack": "^5.1.0",
         "global": "^4.4.0",
+        "imagemin-cli": "^8.0.0",
+        "imagemin-pngquant": "^10.0.0",
         "jstransformer": "^1.0.0",
         "jstransformer-highlight": "^2.0.0",
         "jstransformer-markdown-it": "^3.0.0",
@@ -63,6 +67,7 @@
         "recursive-copy": "^2.0.14",
         "rimraf": "^6.0.1",
         "sass": "^1.86.3",
+        "sharp": "^0.34.1",
         "stylelint": "^16.18.0",
         "stylelint-color-format": "^1.1.0",
         "stylelint-config-idiomatic-order": "^10.0.0",

@@ -32,3 +32,5 @@ node_modules
 
 OLD_pug.cjs
 profile.html
+
+_pics/*
