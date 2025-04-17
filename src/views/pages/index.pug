@@ -8,9 +8,11 @@ append config
 
 block scriptsJS
     +author()
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.6/p5.min.js")
     script(src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/cash/8.1.5/cash.min.js")
     script(src="https://cdn.jsdelivr.net/npm/@terwanerik/scrolltrigger@1.0.5/dist/ScrollTrigger.min.js")
+    script(src="./fractal.js")
     script.
         const trigger = new ScrollTrigger.default()
         trigger.add('[data-trigger]')
@@ -111,10 +113,19 @@ block scriptsJS
 block content
     #fullpage
         .section.homepage(data-trigger="true")
+            .smallTitle
+                .smallTitleWrapper
+                    h1.display-1 Derek Scott
+                    h2.h2.text-center Developer Extraordinaire
             .container-fluid.homepage-content
-                h1#home.display-1 Derek Scott
-                h2.subtitle Developer Extraordinaire
-
+                .row.no-gutters
+                    .col-md-6.d-none.d-sm-none.d-md-block.d-lg-block.d-xl-block.d-xxl-block
+                        #homepageTitle
+                            h1#home.display-1 Derek Scott
+                            h2.subtitle.d-none.d-sm-none.d-md-none.d-lg-block.d-xl-block.d-xxl-block Developer Extraordinaire
+                    .col-md-6
+                        #homepageCanvas
+            .container-fluid.homepage-border
         .section.portfolio-section(data-trigger="true")
             .container.py-5
                 h2#work.display-3.text-center.background.h2.heavyTitle
@@ -134,7 +145,7 @@ block content
                                 p.card-text Generating complex maps and layers from PostGIS GeoJSON
                     .col-sm-6.col-lg-4.mb-4
                         .card
-                            a(href="#")
+                            a(href="imgs/")
                                 img.rounded.card-img-top(src="thumbnails/thumb_map.png" alt="map data")
                     .col-sm-6.col-lg-4.mb-4
                         .card
@@ -254,49 +265,51 @@ block content
                 .row(data-masonry={percentPosition: true })
                     .col-sm-6.col-lg-4.mb-4
                         .card
-                            img.rounded(src="thumbnails/thumb_pigasus-logo.png" alt="pigasus")
+                            a(href="imgs/pigasus-logo.png")
+                                img.card-img-top.rounded(src="thumbnails/thumb_pigasus-logo.png" alt="pigasus")
                     .col-sm-6.col-lg-4.mb-4
                         .card
-                            img.card-img-top(src="thumbnails/thumb_cyber-deck.png" alt="cyber-deck")
+                            a(href="imgs/cyber-deck.png")
+                                img.card-img-top(src="thumbnails/thumb_cyber-deck.png" alt="cyber-deck")
                             .card-body
                                 p.card-text.
                                     CAD preview of a RPi based Cyber deck I am working on.
 
                     .col-sm-6.col-lg-4.mb-4
                         .card
-                            a(href="#")
+                            a(href="imgs/torchwood.png")
                                 img.card-img-top.rounded(src="thumbnails/thumb_torchwood.png" alt="project torchwood")
                     .col-sm-6.col-lg-4.mb-4
                         .card
-                            a(href="#")
+                            a(href="imgs/leah.png")
                                 img.card-img-top.rounded(src="thumbnails/thumb_leah.png" alt="relationship status")
                             .card-body
                                 p.card-text Me and my long term girlfriend
                     .col-sm-6.col-lg-4.mb-4
                         .card
-                            a(href="#")
+                            a(href="imgs/figma-blog.png")
                                 img.card-img-top.rounded(src="thumbnails/thumb_figma-blog.png" alt="figma blog project")
                     .col-sm-6.col-lg-4.mb-4
                         .card
-                            a(href="#")
+                            a(href="imgs/style-tile.png")
                                 img.card-img-top.rounded(src="thumbnails/thumb_style-tile.png" alt="Styleguide preview")
                             .card-body
                                 p.card-text Styleguides are a must have for any big project
                     .col-sm-6.col-lg-4.mb-4
                         .card
-                            a(href="#")
+                            a(href="imgs/statue-13.png")
                                 img.card-img-top.rounded(src="thumbnails/thumb_statue-13.png" alt="Roman Wallpaper")
                     .col-sm-6.col-lg-4.mb-4
                         .card
-                            a(href="#")
+                            a(href="imgs/hackintosh.png")
                                 img.card-img-top.rounded(src="thumbnails/thumb_hackintosh.png" alt="Hackintosh FTW")
                     .col-sm-6.col-lg-4.mb-4
                         .card
-                            a(href="#")
+                            a(href="imgs/watch-what-you-say.png")
                                 img.card-img-top.rounded(src="thumbnails/thumb_watch-what-you-say.png" alt="Hackintosh FTW")
                     .col-sm-6.col-lg-4.mb-4
                         .card
-                            a(href="#")
+                            a(href="imgs/paco.png")
                                 img.card-img-top.rounded(src="thumbnails/thumb_paco.png" alt="I love my baby bear")
 
         .section.profile-section(data-trigger="true")
@@ -328,20 +341,17 @@ block content
 
                             p
                                 | With a background in psychology and economics from the University of North Dakota, I bring a deep understanding of user behavior and financial mathematics to my development process, creating intuitive and efficient digital experiences. Known for my upbeat personality and collaborative spirit, I thrive in team settings and am passionate about taking ideas from napkin mock-ups to deployable MVPs. My GitHub Profile:
-                                a(href="#") site.github.io/1234
-                                |  and reach me at
-                                a(href="#") email@me.com
-                                |  to collaborate on your next project.
+                                a(href="https://johnny13.github.io/iRock/") https://johnny13.github.io/iRock/
+                                |  has a lot of other projects and things I've done if you're looking for my coding qualifications.
                         .mt-3.ps-3
                             .call-to-action-wrapper.container
                                 .row.cta-buttons
                                     .col-md-8.offset-md-2
                                         .cta-wrapper
-                                            a.btn.btn-primary.cta-btn(href="#")
+                                            a.btn.btn-primary.cta-btn(href="mailto:derek@huement.com")
                                                 i.me-2.bx.bxs-envelope(style="color: #ffffff")
                                                 | Message Me
-
-                                            a.btn.btn-success.ms-3.cta-btn(href="mailto:jane.doe@example.com")
+                                            a.btn.btn-success.ms-3.cta-btn(href="https://drive.google.com/file/d/11GmK_6SInLY3IRGLacinEdvUiHEkdIVV/view?usp=sharing")
                                                 i.me-2.bx.bxs-download(style="color: #ffffff")
                                                 | Resume Download
 

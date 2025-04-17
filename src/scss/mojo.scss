@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 $background: #3f3f3f;
 $ocean: #0fb2aa;
 $violet: #520099;
@@ -10,6 +12,20 @@ $background-color_4: #5bc0de;
 $background-color_5: #59ba1f;
 $background-color_6: #d1bd10;
 $background-color_7: #ba1f1f;
+
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1400px,
+);
+
+$smMax: map.get($grid-breakpoints, 'sm');
+$medMax: map.get($grid-breakpoints, 'md');
+$lgMax: map.get($grid-breakpoints, 'lg');
+$xlMax: map.get($grid-breakpoints, 'xl');
 
 body {
     background: $background;
@@ -111,37 +127,47 @@ h2.background span {
 /* Homepage Section */
 .homepage {
     background: #520099;
-    background: linear-gradient(162deg, rgba(82, 0, 153, 1) 0%, rgba(15, 178, 170, 1) 50%, rgba(251, 255, 18, 1) 100%);
+    overflow: hidden;
+    background: linear-gradient(
+        162deg,
+        rgba(82, 0, 153, 1) 0%,
+        rgba(15, 178, 170, 1) 50%,
+        rgba(251, 255, 18, 1) 100%
+    );
 
-    &::after {
-        content: '';
-        position: absolute;
-        left: 50%;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        z-index: 2;
-        background: #fff;
-        border-left: 1px solid #4f4f4f;
-        -webkit-box-shadow: inset 5px 0px 10px 0px rgba(0, 0, 0, 0.62);
-        -moz-box-shadow: inset 5px 0px 10px 0px rgba(0, 0, 0, 0.62);
-        box-shadow: inset 5px 0px 10px 0px rgba(0, 0, 0, 0.62);
+    #homepageCanvas {
     }
 
-    .homepage-content {
+    // &::after {
+    //     content: '';
+    //     position: absolute;
+    //     left: 50%;
+    //     right: 0;
+    //     top: 0;
+    //     bottom: 0;
+    //     z-index: 2;
+    //     background: #fff;
+    //     background: url('imgs/background.jpg') no-repeat top center;
+    //     background-size: cover;
+    //     border-left: 1px solid #4f4f4f;
+    //     -webkit-box-shadow: inset 5px 0px 10px 0px rgba(0, 0, 0, 0.62);
+    //     -moz-box-shadow: inset 5px 0px 10px 0px rgba(0, 0, 0, 0.62);
+    //     box-shadow: inset 5px 0px 10px 0px rgba(0, 0, 0, 0.62);
+    // }
+
+    #homepageTitle {
         height: 100%;
         display: flex;
         position: relative;
         flex-direction: column;
         justify-content: center;
-        padding: 40vh 50px 0px 0px;
+        padding: 0;
 
         .display-1 {
             text-transform: uppercase;
             margin-left: -4rem;
             font-weight: 700;
             letter-spacing: -0.5px;
-            display: inline !important;
         }
         .subtitle {
             font-size: 2.3rem;
@@ -149,40 +175,124 @@ h2.background span {
             letter-spacing: 1px;
             font-family: 'Jost';
             margin-left: -4rem;
-            display: inline-block !important;
+        }
+    }
+
+    .homepage-border {
+        width: 100%;
+        content: '';
+        height: 20px;
+        background: $background;
+        margin-top: -10px;
+        z-index: 2;
+    }
+
+    .smallTitle {
+        display: none;
+    }
+}
+
+@media (max-width: $xlMax) and (min-width: $lgMax) {
+    .homepage .homepage-content {
+        #homepageTitle {
+            transform: rotate(90deg);
+            .display-1 {
+                font-size: 3.5rem;
+            }
+            .subtitle {
+                font-size: 2rem !important;
+            }
+        }
+    }
+}
+
+@media (max-width: $lgMax) {
+    .homepage .homepage-content {
+        .display-1 {
+            transform: rotate(90deg);
+            width: 100%;
+            min-width: 450px;
+        }
+    }
+}
+
+@media (max-width: $medMax) {
+    .homepage {
+        background: $background;
+        .col-md-6 {
+            padding-left: 0px !important;
+            padding-right: 0px !important;
+        }
+
+        .smallTitle {
+            position: relative;
+            display: block;
+
+            .smallTitleWrapper {
+                display: block;
+                z-index: 5;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                padding-top: 200px;
+                width: 100%;
+                max-width: 420px;
+                transform: translate(-50%, 50%);
+
+                .display-1 {
+                    font-weight: 700;
+                    font-size: 5rem;
+                    letter-spacing: -1px;
+                    text-shadow: 2px 1px 0px rgba(0, 0, 0, 0.5);
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: $smMax) {
+    .homepage .smallTitle {
+        .smallTitleWrapper {
+            width: 100%;
+            min-width: 300px;
+            max-width: 300px;
+
+            .display-1 {
+                font-size: 3rem;
+            }
         }
     }
 }
 
 // Change from 50 / 50 to content area overtop image
-@media (max-width: 767px) {
-    .homepage {
-        background: #eee;
+// @media (max-width: 767px) {
+//     .homepage {
+//         background: #eee;
 
-        &::after {
-            opacity: 0;
-            z-index: -9;
-        }
+//         &::after {
+//             opacity: 0;
+//             z-index: -9;
+//         }
 
-        .homepage-content {
-            padding: 40vh 0px 0px 0px;
+//         .homepage-content {
+//             padding: 40vh 0px 0px 0px;
 
-            .display-1,
-            .subtitle {
-                margin: 0 auto !important;
-                text-align: center;
-                display: block;
-                position: relative;
-            }
+//             .display-1,
+//             .subtitle {
+//                 margin: 0 auto !important;
+//                 text-align: center;
+//                 display: block;
+//                 position: relative;
+//             }
 
-            .subtitle {
-                font-size: 2rem;
-                letter-spacing: -2px;
-                font-weight: 400;
-            }
-        }
-    }
-}
+//             .subtitle {
+//                 font-size: 2rem;
+//                 letter-spacing: -2px;
+//                 font-weight: 400;
+//             }
+//         }
+//     }
+// }
 
 .portfolio-section {
     padding-top: 5rem;
@@ -454,7 +564,8 @@ h2.background span {
             height: 400px;
             margin: 0 0 3rem 1rem;
             display: block;
-            background: url('https://i.imgur.com/jYmFd5a.jpeg') no-repeat top center;
+            background: url('https://i.imgur.com/jYmFd5a.jpeg') no-repeat top
+                center;
             background-size: cover;
             border-radius: 10px;
             border: 2px solid #1f1f1f;
@@ -463,7 +574,8 @@ h2.background span {
 
         .headshot-container::after {
             content: '';
-            background: url('https://i.imgur.com/jYmFd5a.jpeg') no-repeat top center;
+            background: url('https://i.imgur.com/jYmFd5a.jpeg') no-repeat top
+                center;
             background-size: cover;
             background-position-y: -398px;
             opacity: 0;
@@ -499,11 +611,16 @@ h2.background span {
     }
 }
 
-@media (max-width: 767px) {
+@media (max-width: $lgMax) {
     .profile-section {
         .author-profile {
             .headshot-container {
                 margin: 0 auto 2rem auto;
+                height: 276px;
+            }
+
+            .headshot-container::after {
+                background-position-y: -276px;
             }
         }
         .cta-buttons {

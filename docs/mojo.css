@@ -100,68 +100,98 @@ h2.background span {
 /* Homepage Section */
 .homepage {
   background: #520099;
+  overflow: hidden;
   background: linear-gradient(162deg, rgb(82, 0, 153) 0%, rgb(15, 178, 170) 50%, rgb(251, 255, 18) 100%);
 }
-.homepage::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  z-index: 2;
-  background: #fff;
-  border-left: 1px solid #4f4f4f;
-  -webkit-box-shadow: inset 5px 0px 10px 0px rgba(0, 0, 0, 0.62);
-  -moz-box-shadow: inset 5px 0px 10px 0px rgba(0, 0, 0, 0.62);
-  box-shadow: inset 5px 0px 10px 0px rgba(0, 0, 0, 0.62);
-}
-.homepage .homepage-content {
+.homepage #homepageTitle {
   height: 100%;
   display: flex;
   position: relative;
   flex-direction: column;
   justify-content: center;
-  padding: 40vh 50px 0px 0px;
+  padding: 0;
 }
-.homepage .homepage-content .display-1 {
+.homepage #homepageTitle .display-1 {
   text-transform: uppercase;
   margin-left: -4rem;
   font-weight: 700;
   letter-spacing: -0.5px;
-  display: inline !important;
 }
-.homepage .homepage-content .subtitle {
+.homepage #homepageTitle .subtitle {
   font-size: 2.3rem;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-family: "Jost";
   margin-left: -4rem;
-  display: inline-block !important;
+}
+.homepage .homepage-border {
+  width: 100%;
+  content: "";
+  height: 20px;
+  background: #3f3f3f;
+  margin-top: -10px;
+  z-index: 2;
+}
+.homepage .smallTitle {
+  display: none;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1200px) and (min-width: 992px) {
+  .homepage .homepage-content #homepageTitle {
+    transform: rotate(90deg);
+  }
+  .homepage .homepage-content #homepageTitle .display-1 {
+    font-size: 3.5rem;
+  }
+  .homepage .homepage-content #homepageTitle .subtitle {
+    font-size: 2rem !important;
+  }
+}
+@media (max-width: 992px) {
+  .homepage .homepage-content .display-1 {
+    transform: rotate(90deg);
+    width: 100%;
+    min-width: 450px;
+  }
+}
+@media (max-width: 768px) {
   .homepage {
-    background: #eee;
+    background: #3f3f3f;
   }
-  .homepage::after {
-    opacity: 0;
-    z-index: -9;
+  .homepage .col-md-6 {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
   }
-  .homepage .homepage-content {
-    padding: 40vh 0px 0px 0px;
-  }
-  .homepage .homepage-content .display-1,
-  .homepage .homepage-content .subtitle {
-    margin: 0 auto !important;
-    text-align: center;
-    display: block;
+  .homepage .smallTitle {
     position: relative;
+    display: block;
   }
-  .homepage .homepage-content .subtitle {
-    font-size: 2rem;
-    letter-spacing: -2px;
-    font-weight: 400;
+  .homepage .smallTitle .smallTitleWrapper {
+    display: block;
+    z-index: 5;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding-top: 200px;
+    width: 100%;
+    max-width: 420px;
+    transform: translate(-50%, 50%);
+  }
+  .homepage .smallTitle .smallTitleWrapper .display-1 {
+    font-weight: 700;
+    font-size: 5rem;
+    letter-spacing: -1px;
+    text-shadow: 2px 1px 0px rgba(0, 0, 0, 0.5);
+  }
+}
+@media (max-width: 576px) {
+  .homepage .smallTitle .smallTitleWrapper {
+    width: 100%;
+    min-width: 300px;
+    max-width: 300px;
+  }
+  .homepage .smallTitle .smallTitleWrapper .display-1 {
+    font-size: 3rem;
   }
 }
 .portfolio-section {
@@ -458,9 +488,13 @@ h2.background span {
   padding: 10px 1.5rem 10px 1.5rem;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 992px) {
   .profile-section .author-profile .headshot-container {
     margin: 0 auto 2rem auto;
+    height: 276px;
+  }
+  .profile-section .author-profile .headshot-container::after {
+    background-position-y: -276px;
   }
   .profile-section .cta-buttons .cta-wrapper {
     margin-top: 2rem;
